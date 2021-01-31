@@ -41,7 +41,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -54,19 +54,21 @@
                     <input id="firstClass-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <button><span onclick="handleFlightsChange('firstClass',true);">+</span></button> 
-                        <button><span onclick="handleFlightsChange('firstClass',false);">-</span> </button></p>
+                    <p> <button><span onclick="handleFlightsChange('firstClass',true);">+</span></button>
+                        <button><span onclick="handleFlightsChange('firstClass',false);">-</span> </button>
+                    </p>
                 </div>
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($ <span id="economy-total"> 100</span>)</label>
                     <input id="economy-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <button><span onclick="handleFlightsChange('economy',true);">+</span></button> 
-                        <button><span onclick="handleFlightsChange('economy',false);">-</span> </button></p>
+                    <p> <button><span onclick="handleFlightsChange('economy',true);">+</span></button>
+                        <button><span onclick="handleFlightsChange('economy',false);">-</span> </button>
+                    </p>
                 </div>
             </div>
             <div class="calculations">
@@ -102,90 +104,65 @@
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
         </div>
-    </section>
+        </section>
 
-    <script>
-        function handleFlightsChange(product, isIncrease) {
-         const productInput = document.getElementById(product + '-count');
-         const productCount = parseInt(productInput.value)
-         let productNewCount = productCount;
-         if (isIncrease == true) {
-            productNewCount = productCount + 1;
-         }
-         if (isIncrease == false && productCount > 0) {
-            productNewCount = productCount - 1;
-         }
-         productInput.value = productNewCount;
+        <script>
+            function handleFlightsChange(product, isIncrease) {
+                const productInput = document.getElementById(product + '-count');
+                const productCount = parseInt(productInput.value)
+                let productNewCount = productCount;
+                if (isIncrease == true) {
+                    productNewCount = productCount + 1;
+                }
+                if (isIncrease == false && productCount > 0) {
+                    productNewCount = productCount - 1;
+                }
+                productInput.value = productNewCount;
 
-        //     const firstClassRent = productNewCount * 150;
-         
-       
-        //     const economyRent = productNewCount * 100;             
-        
-         
-        //  const totalRent = firstClassRent + economyRent;
+                if (product == "firstClass") {
+                    productTotal = productNewCount * 150;
+                }
+                if (product == "economy") {
+                    productTotal = productNewCount * 100;
+                }
+                document.getElementById(product + '-total').innerText = productTotal;
 
-        //  document.getElementById('rent-amount').innerText = totalRent;
+                calculateTotal()
 
-        if (product == "firstClass") {
-            productTotal = productNewCount * 150;
-         }
-         if (product == "economy") {
-            productTotal = productNewCount * 100;
-         }
-         // const caseTotal = productNewCount * 59;
-         document.getElementById(product + '-total').innerText = productTotal;
-
-         calculateTotal()
-        
-      }
+            }
 
 
-      function calculateTotal() {
-         // const phoneInput = document.getElementById('phone-count')
-         // const phoneCount = parseInt(phoneInput.value)
-         // const caseInput = document.getElementById('case-count')
-         // const caseCount = parseInt(caseInput.value);
-         const phoneCount = getInputValue("firstClass");
-         const caseCount = getInputValue("economy");
+            function calculateTotal() {
 
-         const totalPrice = phoneCount * 150 + caseCount * 100;
+                const firstClassCount = getInputValue("firstClass");
+                const economyCount = getInputValue("economy");
 
-         document.getElementById('total-price').innerText = '$'+  totalPrice;
+                const totalPrice = firstClassCount * 150 + economyCount * 100;
 
-         const tex = Math.round(totalPrice * 0.1);
-         document.getElementById('tax-amount').innerText = '$' + tex;
+                document.getElementById('total-price').innerText = '$' + totalPrice;
 
-         const total = totalPrice + tex;
-         document.getElementById('total').innerText = '$'+ total;
+                const tex = Math.round(totalPrice * 0.1);
+                document.getElementById('tax-amount').innerText = '$' + tex;
+
+                const total = totalPrice + tex;
+                document.getElementById('total').innerText = '$' + total;
 
 
-      }
+            }
 
-      function getInputValue(product){
-         const productInput = document.getElementById( product +'-count')
-         const productCount = parseInt(productInput.value)
-         return productCount;
-      }
+            function getInputValue(product) {
+                const productInput = document.getElementById(product + '-count')
+                const productCount = parseInt(productInput.value)
+                return productCount;
+            }
 
+</script>
 
-
-
-
-      
-
-
-
-
-
-      
-
-
-    </script>
-
-    <!--Thank You-->
+        <!--Thank You-->
 </body>
 
 </html>
